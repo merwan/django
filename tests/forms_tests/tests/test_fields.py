@@ -1434,6 +1434,7 @@ class FieldsTests(SimpleTestCase):
         self.assertRaisesMessage(ValidationError, "'This field is required.'", f.clean, '')
         self.assertRaisesMessage(ValidationError, "'This field is required.'", f.clean, None)
         self.assertEqual(f.clean(' 127.0.0.1 '), '127.0.0.1')
+        self.assertRaisesMessage(ValidationError, "'Enter a valid IPv4 or IPv6 address.'", f.clean, 1)
         self.assertRaisesMessage(ValidationError, "'Enter a valid IPv4 or IPv6 address.'", f.clean, 'foo')
         self.assertRaisesMessage(ValidationError, "'Enter a valid IPv4 or IPv6 address.'", f.clean, '127.0.0.')
         self.assertRaisesMessage(ValidationError, "'Enter a valid IPv4 or IPv6 address.'", f.clean, '1.2.3.4.5')

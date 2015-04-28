@@ -1218,6 +1218,7 @@ class GenericIPAddressField(CharField):
         super(GenericIPAddressField, self).__init__(*args, **kwargs)
 
     def to_python(self, value):
+        value = super(GenericIPAddressField, self).to_python(value).strip()
         if value in self.empty_values:
             return ''
         value = value.strip()
